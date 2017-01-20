@@ -59,6 +59,8 @@ public class DetailsFragment extends Fragment {
 		}
 	}
 
+
+
 	@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
@@ -76,6 +78,8 @@ public class DetailsFragment extends Fragment {
 			mParam1 = getArguments().getString(ARG_PARAM1);
 			mParam2 = getArguments().getString(ARG_PARAM2);
 		}
+
+
 	}
 
 	@Override
@@ -89,6 +93,10 @@ public class DetailsFragment extends Fragment {
 		super.onDetach();
 		mListener = null;
 	}
+
+
+
+
 
 	/**
 	 * This interface must be implemented by activities that contain this

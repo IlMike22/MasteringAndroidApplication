@@ -2,8 +2,12 @@ package com.example.mwidlok.masteringandroidapplication;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+
+import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
+
 import layout.ContactFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,8 +17,14 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		ContactFragment contactFragment = ContactFragment.newInstance();
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, contactFragment).commit();
+		MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
+
+		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setAdapter(adapter);
+
+
+//		ContactFragment contactFragment = ContactFragment.newInstance();
+//		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, contactFragment).commit();
 	}
 
 	@Override

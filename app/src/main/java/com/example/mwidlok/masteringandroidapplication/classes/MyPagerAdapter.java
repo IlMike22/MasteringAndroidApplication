@@ -14,7 +14,7 @@ import layout.SettingsFragment;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
-	MyPagerAdapter(FragmentManager fm)
+	public MyPagerAdapter(FragmentManager fm)
 	{
 		super(fm);
 	}
@@ -37,5 +37,21 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		return 3;
+	}
+
+	@Override
+	public CharSequence getPageTitle(int position) {
+
+		switch(position)
+		{
+			case 0:
+				return "Übersicht";
+			case 1:
+				return "Kontakt";
+			case 2:
+				return "Einstellungen";
+			default:
+				return null;
+		}
 	}
 }

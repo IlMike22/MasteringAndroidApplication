@@ -64,8 +64,6 @@ public class ContactFragment extends Fragment {
 		return inflater.inflate(R.layout.fragment_contact, container, false);
 	}
 
-
-
 	@Override
 	public void onDetach() {
 		super.onDetach();

@@ -8,8 +8,6 @@ import android.view.KeyEvent;
 
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
 
-import layout.ContactFragment;
-
 public class MainActivity extends AppCompatActivity {
 
 	@Override
@@ -21,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
 		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(adapter);
-
-
-//		ContactFragment contactFragment = ContactFragment.newInstance();
-//		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, contactFragment).commit();
 	}
 
 	@Override

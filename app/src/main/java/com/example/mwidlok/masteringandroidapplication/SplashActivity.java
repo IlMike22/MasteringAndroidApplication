@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-	private final int SPLASH_DURATION = 1000;
+	private final int SPLASH_DURATION = 1500;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,14 @@ public class SplashActivity extends AppCompatActivity {
 			public void run() {
 				Intent mainIntent = new Intent(SplashActivity.this,MainActivity.class);
 				SplashActivity.this.startActivity(mainIntent);
+				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 				SplashActivity.this.finish();
 			}
 		}, SPLASH_DURATION);
+	}
+
+	@Override
+	public void overridePendingTransition(int enterAnim, int exitAnim) {
+		super.overridePendingTransition(enterAnim, exitAnim);
 	}
 }

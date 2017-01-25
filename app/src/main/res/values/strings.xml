@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">MasteringAndroidApplication</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_contact_fragment">Hello dude. We are now in ContactFragment.</string>
     <string name="hello_detais_fragment">Hello dude. We are now in DetailsFragment.</string>
     <string name="hello_list_fragment">Hello dude. We are now in ListFragment.</string>
     <string name="hello_settings_fragment">Hello dude. We are now in SettingsFragment.</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="welcome_text">MasteringAndroidApplication</string>
 </resources>

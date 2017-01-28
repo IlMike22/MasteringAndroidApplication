@@ -31,16 +31,21 @@ public class MainActivity extends AppCompatActivity {
 		viewPager.setAdapter(adapter);
 
 		Parse.initialize(new Parse.Configuration.Builder(context)
-		                 .applicationId("aa95d2e5-44b1-43b5-ba51-62aacc28f410")
+		                 .applicationId("ynaFJV6UB6rMTNAuWNY5LFEf1xmVWnH0CAAvKTiz")
+				         .clientKey("UvZYfT1qo0IytlZwYm58zOXu2HGU2YbK28eQDB7A")
 		                 .server("https://parseapi.back4app.com/")  //hier die richtigen Werte eintragen, dann kann man Daten fetchen
 		                 .build()
 		);
 
-		Log.i("i","Parse succeeded.");
-		byte[] bytes = null;
-		ParseFile imgFile = new ParseFile("img.png", bytes);
 		ParseObject myParseObject = new ParseObject("JobOffer");
-		myParseObject.put("imageLink",imgFile);
+		myParseObject.put("title","Group Leader Android Developer");
+		myParseObject.put("description","Du hast langjährige Erfahrung in der Android Entwicklung und hast auch schon ein kleines Team unter dir gehabt, das für dich gearbeitet hat.");
+		myParseObject.put("salary","67.000 Euro");
+		myParseObject.put("company", "MyCompany AG");
+		myParseObject.put("type","unbefristeter AP");
+		myParseObject.put("imageLink","image");
+		myParseObject.put("location","Nürnberg, Bayern");
+
 		myParseObject.saveInBackground(new SaveCallback() {
 			@Override
 			public void done(ParseException e) {

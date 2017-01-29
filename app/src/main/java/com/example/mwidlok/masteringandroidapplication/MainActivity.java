@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayInputStream;
@@ -37,26 +39,42 @@ public class MainActivity extends AppCompatActivity {
 		                 .build()
 		);
 
-		ParseObject myParseObject = new ParseObject("JobOffer");
-		myParseObject.put("title","Group Leader Android Developer");
-		myParseObject.put("description","Du hast langjährige Erfahrung in der Android Entwicklung und hast auch schon ein kleines Team unter dir gehabt, das für dich gearbeitet hat.");
-		myParseObject.put("salary","67.000 Euro");
-		myParseObject.put("company", "MyCompany AG");
-		myParseObject.put("type","unbefristeter AP");
-		myParseObject.put("imageLink","image");
-		myParseObject.put("location","Nürnberg, Bayern");
+		// Consuming data from parse...
 
-		myParseObject.saveInBackground(new SaveCallback() {
-			@Override
-			public void done(ParseException e) {
-				if (e == null)
-					Log.i("Info","Parse Upload erfolgreich abgeschlossen");
-				else
-					Log.e("Error","Parse Upload war leider nicht erfolgreich.");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("JobOffer");
+		query.getInBackground("rxZpNxbQCu", new GetCallback<ParseObject>() {
+					@Override
+					public void done(ParseObject object, ParseException e) {
+						if (e == null)
+						{
+							Log.i("PARSE_CONSUME","data was successfully consumed.");
+							Log.i("PARSE_CONSUME",object.getString("title"));
+						}
+						else
+							Log.e("PARSE_CONSUME","data consume failed. details: " + e.getMessage());
+					}
+				});
 
-			}
-		});
+				// Storing data to parse...
+//		ParseObject myParseObject = new ParseObject("JobOffer");
+//		myParseObject.put("title","Group Leader Android Developer");
+//		myParseObject.put("description","Du hast langjährige Erfahrung in der Android Entwicklung und hast auch schon ein kleines Team unter dir gehabt, das für dich gearbeitet hat.");
+//		myParseObject.put("salary","67.000 Euro");
+//		myParseObject.put("company", "MyCompany AG");
+//		myParseObject.put("type","unbefristeter AP");
+//		myParseObject.put("imageLink","image");
+//		myParseObject.put("location","Nürnberg, Bayern");
 
+//		myParseObject.saveInBackground(new SaveCallback() {
+//			@Override
+//			public void done(ParseException e) {
+//				if (e == null)
+//					Log.i("Info","Parse Upload erfolgreich abgeschlossen");
+//				else
+//					Log.e("Error","Parse Upload war leider nicht erfolgreich.");
+//
+//			}
+//		});
 
 
 	}

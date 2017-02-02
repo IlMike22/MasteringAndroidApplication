@@ -29,6 +29,7 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
+    compile 'com.parse:parseui-widget-android:0.0.1'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
     testCompile 'junit:junit:4.12'
 

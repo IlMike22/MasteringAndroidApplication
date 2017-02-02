@@ -7,6 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.mwidlok.masteringandroidapplication.classes.JobOffer;
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
@@ -15,6 +18,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 
 import java.util.List;
 
@@ -52,12 +56,32 @@ public class MainActivity extends AppCompatActivity {
 									 if (e == null)
 									 {
 										 Log.d("ParseInfo","Retrieved " + jobOfferList.size() + " Jobs");
-										 Log.d("ParseINfo","Title " + jobOfferList.get(0).getTitle());
+										 Log.d("ParseInfo","Title " + jobOfferList.get(0).getTitle());
 									 }
 				                       else
 										 Log.e("ParseInfo","Failed to load JobOfferList. Details: " + e.getMessage());
 			                       }
 		                       });
+
+		ParseQueryAdapter<JobOffer> parseQueryAdapter = new ParseQueryAdapter<JobOffer>(this,"JobOffer")
+		{
+			@Override
+			public View getItemView(JobOffer jobOffer, View v, ViewGroup parent) {
+
+				if (v == null)
+				{
+					v = View.inflate(getContext(), R.layout.row_job_offer, null);
+				}
+				super.getItemView(jobOffer, v, parent);
+
+				TextView tvTitle = (TextView) v.findViewById(R.id.rowJobOfferTitle);
+				tvTitle.setText(jobOffer.getTitle());
+				TextView tvDescription = (TextView) v.findViewById(R.id.rowJobOfferDesc);
+				tvDescription.setText(jobOffer.getDescription());
+
+				return v;
+			}
+		};
 
 
 		                       // Storing data to parse...

@@ -25,6 +25,11 @@ public class JobOffer extends ParseObject {
 		return getString("title");
 	}
 
+	public String getDescription()
+	{
+		return getString("description");
+	}
+
 	public void setTitle(String title) {
 		put("title",title);
 	}
@@ -59,10 +64,6 @@ public class JobOffer extends ParseObject {
 
 	void setType(String type) {
 		this.type = type;
-	}
-
-	String getDescription() {
-		return description;
 	}
 
 	void setDescription(String description) {

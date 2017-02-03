@@ -3,12 +3,17 @@ package layout;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.mwidlok.masteringandroidapplication.R;
+import com.example.mwidlok.masteringandroidapplication.classes.JobOffer;
+import com.parse.ParseQueryAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +56,38 @@ public class ListFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
+
 		return inflater.inflate(R.layout.fragment_list, container, false);
+	}
+
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+		ParseQueryAdapter<JobOffer> parseQueryAdapter = new ParseQueryAdapter<JobOffer>(this.getActivity(), "JobOffer")
+		{
+			@Override
+			public View getItemView(JobOffer jobOffer, View v, ViewGroup parent) {
+
+				if (v == null)
+				{
+					v = View.inflate(getContext(), R.layout.row_job_offer, null);
+				}
+				super.getItemView(jobOffer, v, parent);
+
+				TextView tvTitle = (TextView) v.findViewById(R.id.rowJobOfferTitle);
+				tvTitle.setText(jobOffer.getTitle());
+				TextView tvDescription = (TextView) v.findViewById(R.id.rowJobOfferDesc);
+				tvDescription.setText(jobOffer.getDescription());
+
+				return v;
+			}
+		};
+
+
+		ListView lvJobOffers = (ListView) view.findViewById(R.id.lvJobOffers);
+		lvJobOffers.setAdapter(parseQueryAdapter);
+
+		super.onViewCreated(view, savedInstanceState);
 	}
 
 	@Override

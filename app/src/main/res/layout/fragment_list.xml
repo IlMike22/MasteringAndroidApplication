@@ -4,9 +4,11 @@
              android:layout_height="match_parent"
              tools:context="layout.ListFragment">
 
-    <TextView
+    <ListView
+        android:id="@+id/lvJobOffers"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_list_fragment"/>
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </FrameLayout>

@@ -87,6 +87,7 @@ public class ListFragment extends Fragment {
 		ListView lvJobOffers = (ListView) view.findViewById(R.id.lvJobOffers);
 		lvJobOffers.setAdapter(parseQueryAdapter);
 
+
 		super.onViewCreated(view, savedInstanceState);
 	}
 

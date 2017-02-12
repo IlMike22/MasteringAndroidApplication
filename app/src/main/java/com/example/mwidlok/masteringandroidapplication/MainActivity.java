@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.mwidlok.masteringandroidapplication.classes.JobOffer;
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
 import com.parse.FindCallback;
@@ -62,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
 			                       }
 		                       });
 
-
-		                       // Storing data to parse...
+		// Storing data to parse...
 //		ParseObject myParseObject = new ParseObject("JobOffer");
 //		myParseObject.put("title","Group Leader Android Developer");
 //		myParseObject.put("description","Du hast langjährige Erfahrung in der Android Entwicklung und hast auch schon ein kleines Team unter dir gehabt, das für dich gearbeitet hat.");
@@ -84,7 +87,22 @@ public class MainActivity extends AppCompatActivity {
 //			}
 //		});
 
+		// Using GoogleVolley
 
+		String url = "http://www.google.de";
+
+		StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				Log.d("volley", "response is " + response.substring(500));
+			}
+		},new Response.ErrorListener()
+			{
+				public void onErrorResponse(VolleyError error)
+				{
+					Log.d("Volley","Sorry that didn't work");
+				}
+			});
 	}
 
 	@Override

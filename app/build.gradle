@@ -31,6 +31,7 @@ dependencies {
     compile 'com.parse:parse-android:1.+'
     compile 'com.parse:parseui-widget-android:0.0.1'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
+    compile 'com.android.volley:volley:1.0.0'
     testCompile 'junit:junit:4.12'
 
 }

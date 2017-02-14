@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.mwidlok.masteringandroidapplication.classes.JobOffer;
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
 import com.parse.FindCallback;
@@ -66,30 +68,12 @@ public class MainActivity extends AppCompatActivity {
 			                       }
 		                       });
 
-		// Storing data to parse...
-//		ParseObject myParseObject = new ParseObject("JobOffer");
-//		myParseObject.put("title","Group Leader Android Developer");
-//		myParseObject.put("description","Du hast langjährige Erfahrung in der Android Entwicklung und hast auch schon ein kleines Team unter dir gehabt, das für dich gearbeitet hat.");
-//		myParseObject.put("salary","67.000 Euro");
-//		myParseObject.put("company", "MyCompany AG");
-//		myParseObject.put("type","unbefristeter AP");
-//		myParseObject.put("imageLink","image");
-//		myParseObject.put("location","Nürnberg, Bayern");
-
-//		myParseObject.saveInBackground(new SaveCallback() {
-//			@Override
-//			public void done(ParseException e) {
-//				if (e == null)
-//					Log.i("Info","Parse Upload erfolgreich abgeschlossen");
-//				else
-//					Log.e("Error","Parse Upload war leider nicht erfolgreich.");
-//
-//			}
-//		});
-
 		// Using GoogleVolley
 
-		String url = "http://www.google.de";
+		String url = "http://www.google.de";   // setup test uri
+		RequestQueue queue = Volley.newRequestQueue(this); // create volley Request Queue
+
+		// Creating String Request with Handlers.
 
 		StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 			@Override
@@ -103,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
 					Log.d("Volley","Sorry that didn't work");
 				}
 			});
+
+		// now the String Request has to be add to the Volley Queue
+		queue.add(stringRequest);
 	}
 
 	@Override

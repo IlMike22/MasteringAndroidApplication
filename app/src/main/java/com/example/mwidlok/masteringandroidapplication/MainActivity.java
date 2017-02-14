@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
 		// now the String Request has to be add to the Volley Queue
 		queue.add(stringRequest);
+
+		// now using OKHttp (or better saying combining Google Volley and OKHttp)
+
 	}
 
 	@Override

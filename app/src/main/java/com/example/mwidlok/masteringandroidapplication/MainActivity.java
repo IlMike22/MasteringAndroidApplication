@@ -8,12 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.mwidlok.masteringandroidapplication.classes.JobOffer;
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
 import com.parse.FindCallback;
@@ -24,6 +18,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,28 +68,41 @@ public class MainActivity extends AppCompatActivity {
 		// Using GoogleVolley
 
 		String url = "http://www.google.de";   // setup test uri
-		RequestQueue queue = Volley.newRequestQueue(this); // create volley Request Queue
+//		RequestQueue queue = Volley.newRequestQueue(this); // create volley Request Queue
 
-		// Creating String Request with Handlers.
+		// Creating String Request with Handlers. Attention: You can only use one of both technologies at the same time
 
-		StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-			@Override
-			public void onResponse(String response) {
-				Log.d("volley", "response is " + response.substring(500));
-			}
-		},new Response.ErrorListener()
-			{
-				public void onErrorResponse(VolleyError error)
-				{
-					Log.d("Volley","Sorry that didn't work");
-				}
-			});
+//		StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//			@Override
+//			public void onResponse(String response) {
+//				Log.d("volley", "response is " + response.substring(500));
+//			}
+//		},new Response.ErrorListener()
+//			{
+//				public void onErrorResponse(VolleyError error)
+//				{
+//					Log.d("Volley","Sorry that didn't work");
+//				}
+//			});
 
 		// now the String Request has to be add to the Volley Queue
-		queue.add(stringRequest);
+//		queue.add(stringRequest);
 
-		// now using OKHttp (or better saying combining Google Volley and OKHttp)
+		// now using OKHttp (without a queue)
 
+		OkHttpClient client = new OkHttpClient();
+		Request request = new Request.Builder()
+				.url(url)
+				.build();
+		try
+		{
+			okhttp3.Response response = client.newCall(request).execute();
+			Log.i("okhttp","Url Response erfolgreich ausgelesen. Response: " + response.body());
+		}
+		catch(Exception exc)
+		{
+			Log.e("okhttp","Fehler beim Ausführen des Network Requests. Details " + exc.getMessage());
+		}
 	}
 
 	@Override

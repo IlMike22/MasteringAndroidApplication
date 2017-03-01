@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
-
 import com.example.mwidlok.masteringandroidapplication.classes.JobOffer;
 import com.example.mwidlok.masteringandroidapplication.classes.MyPagerAdapter;
 import com.parse.FindCallback;
@@ -16,11 +15,13 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-
+import java.io.IOException;
 import java.util.List;
-
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,18 +92,22 @@ public class MainActivity extends AppCompatActivity {
 		// now using OKHttp (without a queue)
 
 		OkHttpClient client = new OkHttpClient();
+
 		Request request = new Request.Builder()
 				.url(url)
 				.build();
-		try
-		{
-			okhttp3.Response response = client.newCall(request).execute();
-			Log.i("okhttp","Url Response erfolgreich ausgelesen. Response: " + response.body());
-		}
-		catch(Exception exc)
-		{
-			Log.e("okhttp","Fehler beim Ausführen des Network Requests. Details " + exc.getMessage());
-		}
+
+		client.newCall(request).enqueue(new Callback() {
+			@Override
+			public void onFailure(Call call, IOException exc) {
+				Log.e("okhttp","Fehler beim Ausführen des Network Requests. Details " + exc.getMessage());
+			}
+
+			@Override
+			public void onResponse(Call call, Response response) throws IOException {
+				Log.i("okhttp","Url Response erfolgreich ausgelesen. Response: " + response.body());
+			}
+		});
 	}
 
 	@Override

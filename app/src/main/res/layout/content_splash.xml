@@ -26,6 +26,11 @@
             android:text="@string/welcome_text"
             />
 
+        <ProgressBar
+            android:id="@+id/pbSplash"
+            android:layout_width="50dp"
+            android:layout_height="20dp"/>
+
     </LinearLayout>
 
 </RelativeLayout>

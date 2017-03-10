@@ -7,4 +7,5 @@
     <string name="hello_settings_fragment">Hello dude. We are now in SettingsFragment.</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="welcome_text">MasteringAndroidApplication</string>
+    <string name="someWelcomeText">Initialising App. Please wait.</string>
 </resources>

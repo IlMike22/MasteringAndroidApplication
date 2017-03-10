@@ -31,18 +31,20 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Void> {
 
 	@Override
 	protected Void doInBackground(Integer... params) {
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 100; i++)
 		{
+			Log.d("AsyncTask","Round " + i);
+
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			}
 			catch(InterruptedException exc)
 			{
 				exc.printStackTrace();
 			}
 
-			//onProgressUpdate(new Integer[]{i});
+			publishProgress(i);
 		}
 
 		return null;
@@ -52,5 +54,6 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Void> {
 	protected void onPostExecute(Void aVoid) {
 		super.onPostExecute(aVoid);
 		Log.d("AsyncTask", "Completed");
+
 	}
 }
